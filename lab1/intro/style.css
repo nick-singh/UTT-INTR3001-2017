@@ -1,0 +1,22 @@
+#intro_text
+{
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	text-align:center;
+}
+
+#main_header
+{
+	text-align:center;
+	font-family: Tangerine;
+}
+
+#sub_theme {
+    text-align: center;
+	font:italic;
+}
+
+img
+{
+	width:60px;
+	height:60px;
+}
