@@ -1,0 +1,23 @@
+body{
+	font-family: Verdana, Arial, Helvetica, sans-serif
+}
+
+
+#main_header{
+	text-align:center;
+	font-family: Tangerine;
+}
+
+#sub_theme{
+	text-align: center;
+	font:italic;
+}
+
+.intro_text{
+	text-align: center;
+	margin: 0 auto;
+}
+
+.fruit_icon{
+	width: 120px;
+}
