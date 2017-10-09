@@ -1,63 +1,71 @@
-(function(){
+(function(window){
 
 	var personList = [
 		{"firstName":"Nicholas", "lastName":"Chamansingh","sex":"Male","country":"Trindad"}
 	];
 
 	function getFormData(id){
-		var data = {},
-    form = $(id),
-    viewArr = form.serializeArray(),
-    valid = true;
+		var form = $(id),
+		dataArray = form.serializeArray(),
+		data = {},
+		valid = true;
+		$.each(dataArray, function(index, value){
+			$("input[name="+value.name+"]").removeClass('red');
+			if(value.value === ""){
+				$("input[name="+value.name+"]").addClass('red');
+				valid = false;
+			}
+			data[value.name] = value.value;
+		});
+		if(valid === true){
+			clearForm(id);
+			return data;
+		}else{
+			return {};
+		}
 
-    $.each(viewArr, function(i,d){
-      data[viewArr[i].name] = viewArr[i].value;
-      if(viewArr[i].value === ""){
-        valid = false;
-      }
-    });
-    if(valid){
-      return data;
-    }else{
-      return {};
-    }
-	}
+	};
+
 	function clearForm(id){
-    $(id).find("input[type=text], textarea").val("");
-  }
+		$(id).find("input[type=text]", "select").val("");
+	}
 
-	function addRow(){
+	function selectPersonFromTable(){
+		$(".tablePerson").click(function(){
+			var row = $(this).data();
+			console.log(personList[row.id]);
+		});
+	}
+
+	function addPersonRow(){
 		$("#personTableBody").empty();
 		$.each(personList, function(index, data){
-				var row = "<tr>"+
+			var row = "<tr class='tablePerson' data-id='"+index+"'>"+
 									"<td>"+data.firstName+"</td>"+
 									"<td>"+data.lastName+"</td>"+
 									"<td>"+data.sex+"</td>"+
 									"<td>"+data.country+"</td>"+
-								"</tr>";
+									"</tr>";
 			$("#personTableBody").append(row);
 		});
 	}
 
 	function addPerson(){
 		$("#add").click(function(){
-        var data = getFormData("#personDetails");
-				console.log(data);
-				if (!_.isEmpty(data)) {
-					personList.push(data);
-					addRow();
-					clearForm("#personDetails");
-				}else{
-					alert("There are empty Fields");
-				}
-    });
+			var data = getFormData("#personDetails");
+			if(!$.isEmptyObject(data)){
+				personList.push(data);
+				addPersonRow();
+				selectPersonFromTable();
+			}
+		});
 	}
 
-
-	$(document).ready(function(){
+	$(document).ready(function() {
 		$('select').material_select();
-		addRow();
 		addPerson();
+		addPersonRow();
+		selectPersonFromTable();
 	});
 
-})()
+})(this);
