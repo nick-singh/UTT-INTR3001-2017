@@ -9,6 +9,7 @@
 		dataArray = form.serializeArray(),
 		data = {},
 		valid = true;
+		console.log(dataArray);
 		$.each(dataArray, function(index, value){
 			$("input[name="+value.name+"]").removeClass('red');
 			if(value.value === ""){

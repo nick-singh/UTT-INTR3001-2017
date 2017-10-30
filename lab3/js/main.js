@@ -88,6 +88,15 @@
 
 $(document).ready(function(){
   $('.modal').modal();
+  $('#modal2').modal({
+      complete: function() {
+        var confirmation = confirm("Are you sure?!");
+        if (confirmation == true) {
+            clearForm(".new-person");
+        }
+       } // Callback for Modal close
+    }
+  );
   loadData();
   createCardFromList(".person-list");
 
