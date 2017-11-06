@@ -113,7 +113,8 @@
             $sql = "UPDATE `users` SET `picture`=:picture,`age`=:age,
                     `firstName`=:firstName,`lastName`=:lastName,`gender`=:gender,
                     `company`=:company,`email`=:email,`phone`=:phone,`address`=:address,
-                    `about`=:about,`greeting`=:greeting,`favoriteFruit`=:favoriteFruit
+                    `about`=:about,`greeting`=:greeting,`favoriteFruit`=:favoriteFruit,
+                    `registered`=:registered
                     where id = :id;";
             try {
                 $conn = $this->db->getConnection();
